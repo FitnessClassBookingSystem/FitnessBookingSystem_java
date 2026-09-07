@@ -1,18 +1,17 @@
-package org.fitnessBooking.model;
+package org.fitnessBooking.dto.request;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Document
 @Data
-public class Booking {
+public class UpdateBookingRequest {
 
     @Id
     private String id;
+    private String oldTitle;
     private String title;
     private String description;
     private String instructor;
