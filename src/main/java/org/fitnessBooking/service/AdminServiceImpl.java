@@ -35,6 +35,7 @@ public class AdminServiceImpl implements AdminService {
         book.setDate(createBooking.getDate());
         book.setStartTime(createBooking.getStartTime());
         book.setEndTime(createBooking.getEndTime());
+        sessionStorage.save(book);
 
         CreateBookingResponse createResponse = new CreateBookingResponse();
         createResponse.setMessage("Session created successfully");

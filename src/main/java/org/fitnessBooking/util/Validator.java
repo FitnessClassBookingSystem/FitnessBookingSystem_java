@@ -6,8 +6,11 @@ import org.fitnessBooking.dto.request.SearchSessionRequest;
 import org.fitnessBooking.dto.request.UpdateBookingRequest;
 import org.fitnessBooking.exception.BookingAllReadyExist;
 import org.fitnessBooking.exception.BookingDoesNotExist;
+import org.fitnessBooking.exception.RequestError;
 import org.fitnessBooking.model.Booking;
 import org.fitnessBooking.repository.BookingRepository;
+
+import java.time.LocalDate;
 
 public class Validator {
 
@@ -16,11 +19,23 @@ public class Validator {
     public Validator(BookingRepository sessionStorage) {
         this.sessionStorage = sessionStorage;
     }
+
+
     public void newSessionValidation(CreateBookingRequest createBooking) {
         Booking booking = sessionStorage.findByTitle(createBooking.getTitle().toLowerCase());
-        if(booking != null){
+        if (booking != null){
             throw new BookingAllReadyExist("This session already exist");
         }
+        if (createBooking.getTitle().isBlank()) {
+            throw new RequestError("Title cannot be empty");
+        }
+        if (createBooking.getTitle().length() < 3 || createBooking.getTitle().length() > 20) {
+            throw new RequestError("Invalid title length");
+        }
+        if (createBooking.getDate().isBefore(LocalDate.now()) || createBooking.getEndTime().isBefore(createBooking.getStartTime())) {
+            throw new RequestError("Date or time mismatch");
+        }
+
     }
 
 
