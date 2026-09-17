@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>ng.ourChemo</groupId>
-    <artifactId>ourChemo</artifactId>
+    <groupId>org.fitnessBooking</groupId>
+    <artifactId>FitnessBookingSystem</artifactId>
     <version>1.0.0</version>
-    <name>Our Chemist Application</name>
+    <name>Fitness Booking System</name>
 
     <dependencies>
         <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
